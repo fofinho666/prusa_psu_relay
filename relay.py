@@ -4,10 +4,12 @@ import serial
 from serial.tools import list_ports
 from argparse import ArgumentParser
 
+board_name = 'XIAO'
+
 #  find Seeed XIAO M0
 def find_relay():
     ports = list(list_ports.comports())
-    filtered = filter(lambda port: port.description == 'Seeed XIAO M0', ports)
+    filtered = filter(lambda port: board_name in port.description, ports)
     port = next(filtered, None)
     if not port:
         raise IOError("Relay not found")
