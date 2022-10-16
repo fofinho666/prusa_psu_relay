@@ -12,7 +12,7 @@ bool new_state = state;
 bool button_state = LOW;
 bool button_read = button_state;
 
-int incoming_byte = 0;
+String incoming_string = "";
 
 const unsigned long debounce_delay = 50;
 unsigned long last_debounce_time = 0;
@@ -29,14 +29,13 @@ void setup() {
 }
 
 void loop() {
-
   // Serial read
   if (SerialUSB.available() > 0) {
-    incoming_byte = SerialUSB.read();
+    incoming_string = SerialUSB.readStringUntil('\n');
 
-    if (incoming_byte == '0') {
+    if (incoming_string.equals("off")) {
       new_state = OFF;
-    } else if (incoming_byte == '1') {
+    } else if (incoming_string.equals("on")) {
       new_state = ON;
     }
   }
@@ -60,7 +59,6 @@ void loop() {
   if (new_state != state) {
     state = new_state;
 
-    Serial.println(new_state);
     if (new_state == OFF) {
       digitalWrite(RELAY_PIN, LOW);
       digitalWrite(LED_PIN, LOW);

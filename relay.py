@@ -24,9 +24,9 @@ operation = args.operation.lower()
 relay = find_relay()
 
 if operation == "on":
-    relay.write("1".encode())
+    relay.write("on\n".encode())
 elif operation == "off":
-    relay.write("0".encode())
+    relay.write("off\n".encode())
 else:
     raise IOError('Unknown operation: Only "on" or "off" are supported')
 
