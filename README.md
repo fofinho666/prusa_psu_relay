@@ -11,7 +11,7 @@ To flash the code, you need the **Arduino IDE** and the **XIAO** board added to 
 Don't forget to check if the pin connected the Relay is the same as the `const int RELAY_PIN`.
 
 ### Octoprint - PSU Control plugin
-For the script, we only need **python3** and the **pyserial** dependency (if you have OctoPrint you must certain already have this dependency).
+For the script, we only need **python3** and the **pyserial** dependency. Run `$ pip install -r requirements.txt` to install it
 
 The script accepts only one param, "**on**" or "**off**".
 
